@@ -148,6 +148,21 @@ make build
 Note that the docker building process may take a while depends on your network and machine. After VINS-Fusion successfully built, you can run vins estimator with script `run.sh`.
 Script `run.sh` can take several flags and arguments. Flag `-k` means KITTI, `-l` represents loop fusion, and `-g` stands for global fusion. You can get the usage details by `./run.sh -h`. Here are some examples with this script:
 ```
+
+```bash
+# zhipeng
+docker run --rm  \
+  -e "DISPLAY=$DISPLAY"  \
+  -e "QT_X11_NO_MITSHM=1" \
+  -e "XAUTHORITY=$XAUTH"  \
+  -v "/tmp/.X11-unix:/tmp/.X11-unix:rw"  \
+  -v "/mnt/c/network_share/dataset:/root/dataset" \
+  --ipc=host  --network host  \
+  --runtime=nvidia --gpus=all  \
+  --privileged  \
+  -it vins-fusion:noetic-ros
+```
+
 # Euroc Monocualr camera + IMU
 ./run.sh ~/catkin_ws/src/VINS-Fusion/config/euroc/euroc_mono_imu_config.yaml
 

@@ -10,7 +10,7 @@ help:
 	@echo ""
 
 build:
-	@docker build --tag ros:vins-fusion -f ./Dockerfile ..
+	@docker build --tag vins-fusion:noetic-ros -f ./Dockerfile ..
 
 clean:
-	@docker rmi -f ros:vins-fusion
+	@docker rmi -f vins-fusion:noetic-ros
