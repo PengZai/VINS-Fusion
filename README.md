@@ -151,6 +151,10 @@ Script `run.sh` can take several flags and arguments. Flag `-k` means KITTI, `-l
 
 ```bash
 # zhipeng
+
+#before you create container
+xhost +local:docker
+
 docker run --rm  \
   -e "DISPLAY=$DISPLAY"  \
   -e "QT_X11_NO_MITSHM=1" \
