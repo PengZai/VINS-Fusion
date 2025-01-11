@@ -34,14 +34,3 @@ RUN mkdir /root/softwares && cd ~/softwares && \
 
 RUN echo 'source /opt/ros/noetic/setup.bash' >> /root/.bashrc
 RUN echo 'source /root/catkin_ws/devel/setup.bash' >> /root/.bashrc
-
-
-RUN mkdir -p /root/catkin_ws/src
-
-RUN cd /root/catkin_ws/src && \
-    git clone https://github.com/guisoares9/VINS-Fusion.git && \
-    cd .. && \
-    catkin config --extend /opt/ros/$ROS_DISTRO --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
-    catkin build
-
-

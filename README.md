@@ -160,7 +160,7 @@ docker run --rm  \
   -e "QT_X11_NO_MITSHM=1" \
   -e "XAUTHORITY=$XAUTH"  \
   -v "/tmp/.X11-unix:/tmp/.X11-unix:rw"  \
-  -v "/mnt/c/network_share/dataset:/root/dataset" \
+  -v "/media/zhipeng/Extreme SSD/datasets:/root/dataset" \
   --ipc=host  --network host  \
   --runtime=nvidia --gpus=all  \
   --privileged  \
