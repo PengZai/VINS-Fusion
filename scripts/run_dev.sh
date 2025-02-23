@@ -2,7 +2,7 @@
 
 
 IMAGE_NAME="vins-fusion:noetic-ros"
-DATA_PATH="/media/zhipeng/zhipeng_usb/datasets"
+DATA_PATH="/media/${USER}/zhipeng_usb/datasets"
 # Pick up config image key if specified
 if [[ ! -z "${CONFIG_DATA_PATH}" ]]; then
     DATA_PATH=$CONFIG_DATA_PATH
@@ -18,7 +18,7 @@ docker build -t $IMAGE_NAME -f "${HOME}/vscode_projects/VINS-Fusion/catkin_ws/sr
 
 xhost +local:docker
 
-docker run --rm \
+docker run \
     -e DISPLAY \
     -v ~/.Xauthority:/root/.Xauthority:rw \
     --network host \
