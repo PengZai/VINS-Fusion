@@ -10,3 +10,5 @@ for delta = 1 (frames) using consecutive pairs
        sse	2.185466
        std	0.141816
 
+Plot saved to BotanicGarden/1018_00/vinsfusion_stereo_inertial_for_1018_00_img10hz600p/test_0/2d_rpe_vio_raw
+Plot saved to BotanicGarden/1018_00/vinsfusion_stereo_inertial_for_1018_00_img10hz600p/test_0/2d_rpe_vio_map
