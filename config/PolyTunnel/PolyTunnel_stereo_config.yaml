@@ -6,14 +6,14 @@ imu: 0
 num_of_cam: 2 
 
 imu_topic: "/imu/data"
-image0_topic: "/dalsa_rgb/left/image_raw"
-image1_topic: "/dalsa_rgb/right/image_raw"
+image0_topic: "/zed2i/zed_node/left_raw/image_raw_color"
+image1_topic: "/zed2i/zed_node/left_raw/image_raw_color"
 output_path: "/root/catkin_ws/output"
 
-cam0_calib: "dalsa_rgb0_down.yaml"
-cam1_calib: "dalsa_rgb1_down.yaml"
-image_width: 960
-image_height: 600
+cam0_calib: "zed_left_rgb_1080p.yaml"
+cam1_calib: "zed_right_rgb_1080p.yaml"
+image_width: 1920
+image_height: 1080
    
 
 # Extrinsic parameter between IMU and Camera.
@@ -24,18 +24,18 @@ body_T_cam0: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [-0.00140533,-0.00896721,0.99995881,0.18377395,
-          -0.99999022,0.0042065,-0.00136765,0.14789743,
-          -0.00419407,-0.99995095,-0.00897304,-0.0087318,
+   data: [1,0,0,0,
+          0,1,0,0,
+          0,0,1,0,
           0.0,0.0,0.0,1.0]
 
 body_T_cam1: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [-0.00120822,-0.00094742,0.99999882,0.18313715,
-          -0.99997156,0.00744575,-0.00120114,-0.10587443,
-          -0.00744461,-0.99997183,-0.00095639,-0.00933521,
+   data: [0.99996212, -0.00133436,  0.00860078, -0.119729,
+          0.00134459,  0.99999839, -0.00118413, -0.000135398,
+          -0.00859918,  0.00119565,  0.99996231, 0.000681149,
           0.0,0.0,0.0,1.0]
 
 #Multiple thread support
