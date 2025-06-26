@@ -110,8 +110,8 @@ class Estimator
     MarginalizationFlag  marginalization_flag;
     Vector3d g;
 
-    Matrix3d ric[2];
-    Vector3d tic[2];
+    Matrix3d ric[2]; // extrinsic rotation for camera left and right sensor center according to robot center but not world coordinate
+    Vector3d tic[2]; // extrinsic translation for camera left and right sensor according to robot center but not world coordinate
 
     Vector3d        Ps[(WINDOW_SIZE + 1)];
     Vector3d        Vs[(WINDOW_SIZE + 1)];

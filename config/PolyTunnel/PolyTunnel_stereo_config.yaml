@@ -5,7 +5,7 @@
 imu: 0          
 num_of_cam: 2 
 
-imu_topic: "/imu/data"
+imu_topic: "/zed2i/zed_node/imu/data"
 image0_topic: "/zed2i/zed_node/left_raw/image_raw_color"
 image1_topic: "/zed2i/zed_node/left_raw/image_raw_color"
 output_path: "/root/catkin_ws/output"
@@ -24,18 +24,18 @@ body_T_cam0: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [1,0,0,0,
-          0,1,0,0,
-          0,0,1,0,
+   data: [0.9999927,  -0.0017408,   0.00340083,  0.0019591,
+          0.00175429,  0.99999059, -0.00396763,  0.02306515,
+          -0.00339389,  0.00397358,  0.99998634, -0.00013215,
           0.0,0.0,0.0,1.0]
 
 body_T_cam1: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [0.99996212, -0.00133436,  0.00860078, -0.119729,
-          0.00134459,  0.99999839, -0.00118413, -0.000135398,
-          -0.00859918,  0.00119565,  0.99996231, 0.000681149,
+   data: [0.99995482,  0.00000232,  0.00002925,  0.00023456,
+          0.00000236,  0.99998898,  0.0000047,  -0.00000312,
+          0.00002918,  0.00000475,  0.99994865, -0.00000009,
           0.0,0.0,0.0,1.0]
 
 #Multiple thread support
