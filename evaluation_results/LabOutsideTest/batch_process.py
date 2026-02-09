@@ -7,9 +7,9 @@ import shutil
 
 
 
-sequence_name = '1005_07'
+sequence_name = 'datasetTest_2025-12-08-14-30-19'
 sensor_type = 'monocular_inertial'
-filename_prefix = '_'.join(['vinsfusion', sensor_type,'for', sequence_name, 'img10hz600p'])
+filename_prefix = '_'.join(['vinsfusion', sensor_type,'for', sequence_name, 'datasetTest_2025-12-08-14-30-19'])
 
 if not os.path.exists(os.path.join(sequence_name, filename_prefix)):
     os.makedirs(os.path.join(sequence_name, filename_prefix))
@@ -25,7 +25,7 @@ if not os.path.exists(os.path.join(sequence_name, filename_prefix, current_testf
 camera_filename = '_'.join([filename_prefix, 'vio'])
 filename_suffix = '.csv'
 shutil.copy(os.path.join(sequence_name, camera_filename+filename_suffix), os.path.join(sequence_name, filename_prefix, current_testfolder_name, camera_filename+filename_suffix))
-shutil.copytree(os.path.join('../../config', 'BotanicGarden'), os.path.join(sequence_name, filename_prefix, current_testfolder_name, 'config', 'BotanicGarden'))
+shutil.copytree(os.path.join('../../config', 'PolyTunnelNov2025'), os.path.join(sequence_name, filename_prefix, current_testfolder_name, 'config', 'PolyTunnelNov2025'))
 
 
 
@@ -39,22 +39,23 @@ shutil.copytree(os.path.join('../../config', 'BotanicGarden'), os.path.join(sequ
 # ])
 
 # keep same, it seems we don't need to transfer to VLP16 coordinates, which is more precise
-# sensor_coordinate_transform_matrix_for_camera_frame = np.array([
-#     [1.,0,0,0],  
-#     [0,1.,0,0],  
-#     [0,0,1.,0],  
-#     [0,0,0,1.0]
-# ])
 
-# VLP16 in Xsens coordinates, T_xsens_vlp16
+
+# TCI
 sensor_coordinate_transform_matrix_for_camera_frame = np.array([
-    [0.999678872580465,0.0252865664429322,0.00150422292234868,0],  
-    [-0.0252723438960774,0.999649431893338,-0.0078025434141585,0],  
-    [-0.00170103929405540,0.00776298237926191,0.99996789371916,0],  
+    [0.052123234473504004, -0.9986040017007423, 0.008556647432494846, 0.03068196938303387],  
+    [-0.007305437913110946, -0.008949352761424723, -0.9999332676044184, -0.05507509632808549],  
+    [0.9986139389198, 0.052057246108639654, -0.007761708746578777, -0.12407766434205443],  
     [0.0,0.0,0.0,1.0]
 ])
 
-
+if sensor_type == "monocular_inertial" or sensor_type == "stereo_inertial":
+    sensor_coordinate_transform_matrix_for_camera_frame = np.array([
+        [1.,0,0,0],  
+        [0,1.,0,0],  
+        [0,0,1.,0],  
+        [0,0,0,1.0]
+    ])
 
 
 # seems x in camera frame of orbslam system is z in BotanicGarden, and y is -y

@@ -45,6 +45,29 @@ void img1_callback(const sensor_msgs::ImageConstPtr &img_msg)
 }
 
 
+// cv::Mat getImageFromMsg(const sensor_msgs::ImageConstPtr &img_msg)
+// {
+//     cv_bridge::CvImageConstPtr ptr;
+//     if (img_msg->encoding == "8UC1")
+//     {
+//         sensor_msgs::Image img;
+//         img.header = img_msg->header;
+//         img.height = img_msg->height;
+//         img.width = img_msg->width;
+//         img.is_bigendian = img_msg->is_bigendian;
+//         img.step = img_msg->step;
+//         img.data = img_msg->data;
+//         img.encoding = "mono8";
+//         ptr = cv_bridge::toCvCopy(img, sensor_msgs::image_encodings::MONO8);
+//     }
+//     else
+//         ptr = cv_bridge::toCvCopy(img_msg, sensor_msgs::image_encodings::MONO8);
+
+//     cv::Mat img = ptr->image.clone();
+//     return img;
+// }
+
+
 cv::Mat getImageFromMsg(const sensor_msgs::ImageConstPtr &img_msg)
 {
     cv_bridge::CvImageConstPtr ptr;
@@ -82,16 +105,19 @@ void sync_process()
             {
                 double time0 = img0_buf.front()->header.stamp.toSec();
                 double time1 = img1_buf.front()->header.stamp.toSec();
+                double time_diff = std::abs(time1 - time0);
                 // 0.003s sync tolerance
                 if(time0 < time1 - 0.003)
+                // if(time0 < time1 - 0.02)
                 {
                     img0_buf.pop();
-                    printf("throw img0\n");
+                    printf("throw img0, img0 time, %fs, img1 time, %fs, diff %fs\n", time0, time1, time_diff);
                 }
                 else if(time0 > time1 + 0.003)
+                // else if(time0 > time1 + 0.02)
                 {
                     img1_buf.pop();
-                    printf("throw img1\n");
+                    printf("throw img1, img0 time, %fs, img1 time, %fs, diff %fs\n", time0, time1, time_diff);
                 }
                 else
                 {
@@ -101,7 +127,7 @@ void sync_process()
                     img0_buf.pop();
                     image1 = getImageFromMsg(img1_buf.front());
                     img1_buf.pop();
-                    //printf("find img0 and img1\n");
+                    // printf("find img0 and img1, img0 time %fs, img1 time, %fs, diff %fs\n", time0, time1, time_diff);
                 }
             }
             m_buf.unlock();

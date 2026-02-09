@@ -2,18 +2,19 @@
 
 #common parameters
 #support: 1 imu 1 cam; 1 imu 2 cam: 2 cam; 
-imu: 0          
+imu: 1         
 num_of_cam: 2 
 
-imu_topic: "/imu/data"
-image0_topic: "/dalsa_rgb/left/image_raw"
-image1_topic: "/dalsa_rgb/right/image_raw"
+imu_topic: "/ms/imu/data"
+image0_topic: "/forwardLeft/image_raw"
+image1_topic: "/forwardRight/image_raw"
 output_path: "/root/catkin_ws/output"
 
-cam0_calib: "dalsa_rgb0_down.yaml"
-cam1_calib: "dalsa_rgb1_down.yaml"
-image_width: 960
-image_height: 600
+cam0_calib: "basler_left_forward.yaml"
+cam1_calib: "basler_right_forward.yaml"
+image_width: 2048
+image_height: 1536
+   
    
 
 # Extrinsic parameter between IMU and Camera.
@@ -24,18 +25,18 @@ body_T_cam0: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [-0.00140533,-0.00896721,0.99995881,0.18377395,
-          -0.99999022,0.0042065,-0.00136765,0.14789743,
-          -0.00419407,-0.99995095,-0.00897304,-0.0087318,
+   data: [0.0521232345, -0.0073054379, 0.9986139389, 0.1219040939,
+          -0.9986040017, -0.0089493528, 0.0520572461, 0.0366053924,
+          0.0085566474, -0.9999332676, -0.0077617087, -0.0562970105,
           0.0,0.0,0.0,1.0]
 
 body_T_cam1: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [-0.00120822,-0.00094742,0.99999882,0.18313715,
-          -0.99997156,0.00744575,-0.00120114,-0.10587443,
-          -0.00744461,-0.99997183,-0.00095639,-0.00933521,
+   data: [0.0280588344, -0.0081160869, 0.9995733244, 0.1262187787,
+          -0.999565892, -0.009216002, 0.027983796, -0.1028260523,
+          0.0089849508, -0.9999245943, -0.0083711539, -0.0553219053,
           0.0,0.0,0.0,1.0]
 
 #Multiple thread support
@@ -59,10 +60,10 @@ keyframe_parallax: 10.0 # keyframe selection threshold (pixel)
 # real-world testing, some other processes will also happen, including temperature drift, motional effects, etc.
 # So we recommend to increase the white_noise to several to 10x to relax these errors.
 # Directly try the following params that we have successfully tested.
-acc_n: 0.01          # accelerometer measurement noise standard deviation. 
-gyr_n: 0.002         # gyroscope measurement noise standard deviation.     
-acc_w: 0.00008        # accelerometer bias random work noise standard deviation.  
-gyr_w: 0.00003       # gyroscope bias random work noise standard deviation.
+acc_n: 0.001093618          # accelerometer measurement noise standard deviation. 
+gyr_n: 0.00060369579         # gyroscope measurement noise standard deviation.     
+acc_w: 4.584471e-05        # accelerometer bias random work noise standard deviation.  
+gyr_w: 3.22094e-05       # gyroscope bias random work noise standard deviation.
 g_norm: 9.81007     # gravity magnitude
 
 #unsynchronization parameters
